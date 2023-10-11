@@ -1,6 +1,7 @@
 import unittest
 from io import StringIO
 from unittest import mock
+from unittest.mock import patch
 
 from app.tic_tac_toe import print_board, get_row
 
@@ -49,6 +50,24 @@ class TicTacToeTest(unittest.TestCase):
             self.assertEqual(row, 1)
             expected_output = "Некорректный ввод. Пробуйте снова.\n"
             self.assertEqual(captured_output.getvalue(), expected_output)
+
+    """
+    Тестирование функции play_game(),
+    которая отвечает за ход игры
+    """
+
+    @patch('builtins.input', side_effect=["1", "1", "3", "1", "2", "2", "3", "2", "3", "3", "no"])
+    def test_play_game(self, mock_input):
+        # Ожидаемый результат
+        expected_output = "Player X wins!"
+
+        # Получение реального результата
+        with patch('app.tic_tac_toe.print') as mock_print:
+            play_game()
+        call_args = [args[0] for args, kwargs in mock_print.call_args_list if args]
+
+        # Сравнение результатов
+        self.assertEqual(expected_output, [args[0] for args, kwargs in mock_print.call_args_list if args][-1])
 
 
 if __name__ == "__main__":

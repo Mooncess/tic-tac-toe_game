@@ -31,3 +31,15 @@ def get_row(player):
             return row
         except ValueError:
             print("Некорректный ввод. Пробуйте снова.")
+
+
+def get_col(player):
+    while True:
+        try:
+            col = int(input(f"Игрок {player}, введите номер столбца (1-3): ")) - 1
+            if col < 0 or col > 2:
+                print("Некорректный ввод. Пробуйте снова.")
+                continue
+            return col
+        except ValueError:
+            print("Некорректный ввод. Пробуйте снова.")

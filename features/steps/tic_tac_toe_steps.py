@@ -1,5 +1,7 @@
 from behave import given, when, then
 
+from app.tic_tac_toe import check_win
+
 
 @given('Пустое игровое поле')
 def step_given_empty_game_board(context):

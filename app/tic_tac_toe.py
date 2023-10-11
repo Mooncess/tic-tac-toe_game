@@ -54,3 +54,28 @@ def play_again():
             return False
         else:
             print("Invalid input. Try again.")
+
+
+def play_game():
+    board = [[" ", " ", " "], [" ", " ", " "], [" ", " ", " "]]
+    players = ["X", "O"]
+    current_player = 0
+    while True:
+        print_board(board)
+        row = get_row(players[current_player])
+        col = get_col(players[current_player])
+        if board[row][col] != " ":
+            print("That spot is already taken. Try again.")
+            continue
+        board[row][col] = players[current_player]
+        if check_win(board, players[current_player]):
+            print_board(board)
+            print(f"Player {players[current_player]} wins!")
+            break
+        if all(" " not in row for row in board):
+            print_board(board)
+            print("It's a tie!")
+            break
+        current_player = (current_player + 1) % 2
+    if play_again():
+        play_game()

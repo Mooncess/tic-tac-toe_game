@@ -34,3 +34,19 @@ def step_when_player_selects_column(context):
 def step_then_game_should_return_column_contents(context, mock_input):
     column_contents = get_col(context.board)
     assert column_contents + 1 == context.column_number
+
+
+
+@given('законченная игра')
+def step_given_finished_game(context):
+    context.finished_game = True
+
+@when('игрок выбирает начать новую игру')
+def step_when_player_chooses_play_again(context):
+    context.player_choice = "yes"
+
+
+@then('игра начинается заново')
+def step_then_game_should_restart(context):
+    with patch('builtins.input', return_value=context.player_choice):
+        assert play_again() == True

@@ -2,6 +2,8 @@ import unittest
 from io import StringIO
 from unittest import mock
 
+from app.tic_tac_toe import print_board
+
 
 class TicTacToeTest(unittest.TestCase):
 

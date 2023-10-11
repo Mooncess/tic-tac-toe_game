@@ -43,3 +43,14 @@ def get_col(player):
             return col
         except ValueError:
             print("Некорректный ввод. Пробуйте снова.")
+
+
+def play_again():
+    while True:
+        answer = input("Do you want to play again? (yes or no): ")
+        if answer.lower() == "yes":
+            return True
+        elif answer.lower() == "no":
+            return False
+        else:
+            print("Invalid input. Try again.")
